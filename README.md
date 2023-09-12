@@ -6,6 +6,12 @@ Rails V. 7.0.8
 
 Ruby V. 3.2.2
 
+<h3>Getting started</h3>
+
+* run `rails db:{create,migrate,seed}`
+
+* run `bundle install`
+
 Gems: 
 
 * "factory_bot_rails"
