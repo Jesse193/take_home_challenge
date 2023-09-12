@@ -27,8 +27,8 @@ Gems:
 `post "/api/v1/customer_subscriptions", params: params`
 
 returns:  
-
-`{:data=>
+```
+{:data=>
   {:id=>"271",
    :type=>"customer_subscription",
    :attributes=>
@@ -48,15 +48,15 @@ returns:
        :frequency=>"monthly",
        :tea_id=>287,
        :created_at=>"2023-09-12T21:36:16.402Z",
-       :updated_at=>"2023-09-12T21:36:16.402Z"}}}}`
-
+       :updated_at=>"2023-09-12T21:36:16.402Z"}}}}
+```
 <h3>Unsubscribing from service</h3>
 
 `patch "/api/v1/customer_subscriptions/#{subscription[:data][:id]}"`
 
 returns:  
-
-`{:data=>
+```
+{:data=>
   {:id=>"271",
    :type=>"customer_subscription",
    :attributes=>
@@ -76,7 +76,8 @@ returns:
        :frequency=>"monthly",
        :tea_id=>287,
        :created_at=>"2023-09-12T21:36:16.402Z",
-       :updated_at=>"2023-09-12T21:36:16.402Z"}}}}`
+       :updated_at=>"2023-09-12T21:36:16.402Z"}}}}
+```
 
 <h3>All subscriptions by customer</h3>
 
@@ -85,8 +86,8 @@ returns:
 `post "/api/v1/customer_subscriptions", params: params`
 
 returns: 
-
-`{:data=>
+```
+{:data=>
   [{:id=>"279",
     :type=>"customer_subscription",
     :attributes=>
@@ -126,4 +127,5 @@ returns:
         :frequency=>"monthly",
         :tea_id=>296,
         :created_at=>"2023-09-12T21:46:22.167Z",
-        :updated_at=>"2023-09-12T21:46:22.167Z"}}}]}`
+        :updated_at=>"2023-09-12T21:46:22.167Z"}}}]}
+```
