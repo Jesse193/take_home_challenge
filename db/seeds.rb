@@ -5,8 +5,8 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-create_list(:customer, 5)
-@tea_1 = create(:tea)
-@tea_2 = create(:tea)
-create(:subscription, tea_id: @tea_1.id)
-create(:subscription, tea_id: @tea_2.id)
+customer = Customer.create!(first_name: "Bill", last_name: "Smith", email: "email@email.com", address: "example street" )
+@tea_1 = Tea.create!(title: "Green", description: "some description", temperature: 100, brew_time: 5)
+@tea_2 = Tea.create!(title: "black", description: "a description", temperature: 110, brew_time: 4)
+subscription = Subscription.create!(title: "green tea", price: 10.0, frequency: "monthly", tea_id: @tea_1.id)
+subscription = Subscription.create!(title: "black tea", price: 10.0, frequency: "monthly", tea_id: @tea_2.id)
