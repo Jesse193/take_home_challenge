@@ -1,12 +1,12 @@
 require "rails_helper"
 
-RSpec.describe "subscription create" do
+RSpec.describe "unsubscribe" do
   before(:each) do
     @customer = create(:customer)
     @tea = create(:tea)
     @subscription = create(:subscription, tea_id: @tea.id)
   end
-  describe "DELETE api/v1/customer_subscriptions" do
+  describe "PATCH api/v1/customer_subscriptions" do
     it "can create subscription" do
       expect(Subscription.count).to eq(1)
       params = { customer_id: @customer.id, subscription_id: @subscription.id}
