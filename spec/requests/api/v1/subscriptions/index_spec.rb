@@ -18,7 +18,15 @@ RSpec.describe "all subscriptions" do
       get "/api/v1/customer/#{@customer.id}/customer_subscriptions"
       expect(response).to be_successful
       subscriptions = JSON.parse(response.body, symbolize_names: true)
-      expect(subscriptions).to be_a(Array)
+      expect(subscriptions).to be_a(Hash)
+      expect(subscriptions[:data].count).to eq(2)
+      expect(subscriptions[:data][0]).to have_key(:type)
+      expect(subscriptions[:data][0][:type]).to eq("customer_subscription")
+      expect(subscriptions[:data][0]).to have_key(:attributes)
+      expect(subscriptions[:data][0][:attributes]).to have_key(:status)
+      expect(subscriptions[:data][0][:attributes][:status]).to eq("subscribed")
+      expect(subscriptions[:data][0][:attributes]).to have_key(:customer)
+      expect(subscriptions[:data][0][:attributes]).to have_key(:subscription)
     end
   end
 end
