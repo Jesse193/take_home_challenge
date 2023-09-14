@@ -27,5 +27,10 @@ RSpec.describe "unsubscribe" do
       expect(subscription[:data][:attributes]).to have_key(:customer)
       expect(subscription[:data][:attributes]).to have_key(:subscription)
     end
+    it "raises error for invalid customer subscription ID" do
+      params = { customer_id: 10000, subscription_id: 200}
+      patch "/api/v1/customer_subscriptions/1000", params: params
+      expect(response.body).to eq("{\"error\":\"Couldn't find CustomerSubscription with 'id'=1000\"}")
+    end
   end
 end
