@@ -56,6 +56,7 @@ returns:
        :created_at=>"2023-09-12T21:36:16.402Z",
        :updated_at=>"2023-09-12T21:36:16.402Z"}}}}
 ```
+
 <h3>Unsubscribing from service</h3>
 
 `patch "/api/v1/customer_subscriptions/#{subscription[:data][:id]}"`
@@ -134,4 +135,28 @@ returns:
         :tea_id=>296,
         :created_at=>"2023-09-12T21:46:22.167Z",
         :updated_at=>"2023-09-12T21:46:22.167Z"}}}]}
+```
+<h3>Errors</h3>
+
+An invalid customer ID will return: 
+
+```
+{
+    "error": "Couldn't find Customer with 'id'=2"
+}
+```
+An invalid subscription ID will return:
+
+```
+{
+    "error": "Couldn't find Subscription with 'id'=1000"
+}
+```
+
+An invalid Customer subscription ID will return:
+
+```
+{
+    "error": "Couldn't find CustomerSubscription with 'id'=3"
+}
 ```
