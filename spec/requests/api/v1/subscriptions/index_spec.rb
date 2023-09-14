@@ -8,7 +8,7 @@ RSpec.describe "all subscriptions" do
     @subscription_1 = create(:subscription, tea_id: @tea_1.id)
     @subscription_2 = create(:subscription, tea_id: @tea_2.id)
   end
-  describe "POST api/v1/customer_subscriptions" do
+  describe "GET api/v1/customer_subscriptions" do
     it "can create subscription" do
       params = { customer_id: @customer.id, subscription_id: @subscription_1.id}
       post "/api/v1/customer_subscriptions", params: params
@@ -27,6 +27,14 @@ RSpec.describe "all subscriptions" do
       expect(subscriptions[:data][0][:attributes][:status]).to eq("subscribed")
       expect(subscriptions[:data][0][:attributes]).to have_key(:customer)
       expect(subscriptions[:data][0][:attributes]).to have_key(:subscription)
+    end
+    it "raises error for invalid customer ID" do
+      params = { customer_id: @customer.id, subscription_id: @subscription_1.id}
+      post "/api/v1/customer_subscriptions", params: params
+      params = { customer_id: @customer.id, subscription_id: @subscription_2.id}
+      post "/api/v1/customer_subscriptions", params: params
+      get "/api/v1/customer/100000/customer_subscriptions"
+      expect(response.body).to eq("{\"error\":\"Couldn't find Customer with 'id'=100000\"}")
     end
   end
 end

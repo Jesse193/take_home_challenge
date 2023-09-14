@@ -24,5 +24,15 @@ RSpec.describe "subscription create" do
       expect(subscription[:data][:attributes]).to have_key(:customer)
       expect(subscription[:data][:attributes]).to have_key(:subscription)
     end
+    it "raises error for invalid subscription ID" do
+      params = { customer_id: @customer.id, subscription_id: 200}
+      post "/api/v1/customer_subscriptions", params: params
+      expect(response.body).to eq("{\"error\":\"Couldn't find Subscription with 'id'=200\"}")
+    end
+    it "raises error for invalid customer ID" do
+      params = { customer_id: 10000, subscription_id: 200}
+      post "/api/v1/customer_subscriptions", params: params
+      expect(response.body).to eq("{\"error\":\"Couldn't find Customer with 'id'=10000\"}")
+    end
   end
 end
